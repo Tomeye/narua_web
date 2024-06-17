@@ -1,4 +1,4 @@
-const splash = document.querySelector('#splashContainer');
+const splash = document.querySelector('#splash-container');
 
 window.addEventListener("load", (event) => {
     console.log('content start loading');
@@ -7,6 +7,6 @@ window.addEventListener("load", (event) => {
 window.addEventListener("DOMContentLoaded", () => {
     console.log('content loaded');
     setTimeout(() => {
-        splash.classList.add('display-none');
+        splash.classList.add('splash-disappear');
     }, 2000);
 });
