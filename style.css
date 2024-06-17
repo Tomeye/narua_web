@@ -1,42 +1,48 @@
-html, body {
-    height: 100%;
+@font-face {
+    font-family: logo;
+    src: url(fonts/otf/MontserratAlt1-Medium.otf);
+}
+  
+/* splash screen */
+
+body {
     margin: 0;
+    padding: 0;
+    background-color: #50C878;
+    font-family: logo;
 }
 
-.fullscreen {
-    height: 100%;
+.splashContainer {
+    position: fixed;
     width: 100%;
-}
-
-.mainContainer {
-    background-color: black;
+    height: 100vh;
+    z-index: 200;
+    background-color: #50C878;
 }
 
 .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-.animated {
-    -webkit-animation-duration: 3s;
-    animation-duration: 3s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
- }
-
-@-webkit-keyframes fadeOut {
-    0% {opacity: 1;}
-    100% {opacity: 0;}
- }
- 
- @keyframes fadeOut {
-    0% {opacity: 1;}
-    100% {opacity: 0;}
+.display-none {
+    z-index: -10;
+    opacity: 0;
+    transition: all 0.5s;
 }
 
-.fadeOut {
-    -webkit-animation-name: fadeOut;
-    animation-name: fadeOut;
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
 }
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in forwards;
+}
+
+
+/* main content */
