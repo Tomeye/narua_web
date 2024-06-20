@@ -1,6 +1,11 @@
 @font-face {
     font-family: logo;
-    src: url(fonts/otf/MontserratAlt1-Medium.otf);
+    src: url(fonts/montserrat_logo/otf/MontserratAlt1-Medium.otf);
+}
+
+@font-face {
+    font-family: logo-normal;
+    src: url(fonts/montserrat/static/Montserrat-Regular.ttf);
 }
 
 /* general */
@@ -9,7 +14,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: #0f0e12;
-    font-family: logo;
 }
 
 a {
@@ -26,8 +30,13 @@ a {
     height: 100vh;
 }
 
-.white-font {
+.white-logo-font {
     font-family: logo;
+    color: white;
+}
+
+.white-normal-font {
+    font-family: logo-normal;
     color: white;
 }
   
