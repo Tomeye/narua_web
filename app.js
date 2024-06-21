@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", () => {
     console.log("content loaded");
     setTimeout(() => {
         splash.classList.add("splash-disappear");
-    }, 2000);
+    }, 4000);
 });
 
 // https://kenwheeler.github.io/slick/

@@ -58,6 +58,7 @@ a {
     height: 100dvh;
     z-index: 1;
     background-color: #0f0e12;
+    text-align: center;
 }
 
 .splash-disappear {
@@ -75,6 +76,23 @@ a {
 .fade-in {
     opacity: 1;
     animation: fadeIn 1.5s ease-in forwards;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+    border-radius: 50%;
 }
 
 /* main content */
