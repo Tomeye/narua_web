@@ -92,7 +92,6 @@ a {
 
 .pulse {
     animation: pulse 2s infinite;
-    border-radius: 50%;
 }
 
 /* main content */
