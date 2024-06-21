@@ -86,8 +86,6 @@ a {
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 
 #content {
@@ -97,6 +95,8 @@ a {
     flex: 10;
     text-align: center;
     overflow: auto;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .main-image {
