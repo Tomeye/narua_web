@@ -32,7 +32,7 @@ a {
 }
 
 .full-height {
-    height: 100vh;
+    height: 100%;
 }
 
 .white-logo-font {
@@ -49,7 +49,7 @@ a {
     font-family: font-bold;
     color: white;
 }
-  
+
 /* splash screen */
 
 .splash-container {
@@ -82,10 +82,26 @@ a {
 #main-content {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     justify-content: center;
     align-items: center;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 10;
+    text-align: center;
+    overflow: auto;
+}
+
+.main-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: scale-down;
+    border-radius: 25px;
 }
 
 /* header */
@@ -98,12 +114,6 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#content {
-    flex:10;
-    width: 100%;
-    background-color: wheat;
 }
 
 /* footer */
