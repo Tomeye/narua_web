@@ -10,3 +10,5 @@ window.addEventListener("DOMContentLoaded", () => {
         splash.classList.add('splash-disappear');
     }, 2000);
 });
+
+// https://kenwheeler.github.io/slick/
