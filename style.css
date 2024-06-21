@@ -82,9 +82,11 @@ a {
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.1);
     }
+
     100% {
         transform: scale(1);
     }
@@ -153,27 +155,31 @@ a {
 /* impressum */
 
 .impressum {
-    margin-left: 1vw;
-    margin-right: 1vw;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-    height: 96vh;
-    width: 98vw;
+    margin: 10px;
+    width: calc(100% - 20px);
+    height: (calc 100vfh - 20px);
+}
+
+.impressum-header {
+    font-size: 16;
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 .information {
+    margin-left: 5px;
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
-.header {
-    font-size: 14;
-}
-
-.text {
+.information-header {
     font-size: 12;
 }
 
+.text {
+    font-size: 10;
+}
+
 .impressum p {
-    margin: 10px;
+    margin: 5px;
 }
