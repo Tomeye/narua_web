@@ -8,5 +8,5 @@ window.addEventListener("DOMContentLoaded", () => {
     console.log("content loaded");
     setTimeout(() => {
         splash.classList.add("splash-disappear");
-    }, 2000);
+    }, 1000);
 });
