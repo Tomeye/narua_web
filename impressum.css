@@ -1,0 +1,31 @@
+/* impressum */
+
+.impressum {
+    margin: 10px;
+    width: calc(100% - 20px);
+    height: (calc 100vfh - 20px);
+}
+
+.impressum-header {
+    font-size: 16;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.information {
+    margin-left: 5px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.information-header {
+    font-size: 12;
+}
+
+.text {
+    font-size: 10;
+}
+
+.impressum p {
+    margin: 5px;
+}
