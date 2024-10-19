@@ -17,48 +17,87 @@
 
 body {
     margin: 0;
+    display: flex;
+    flex-direction: column;
     padding: 0;
+    min-height: 100vh;
     background-color: #0f0e12;
-}
-
-a {
     color: white;
 }
 
-.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+a {
+    text-decoration: underline;
+    color: white;
 }
 
-.full-height {
-    height: 100%;
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: white;
+}
+
+a:active {
+    color: white;
+}
+
+header.logo {
+    text-align: center;
+    padding: 20px;
+}
+
+header.logo img {
+    max-width: 200px;
+    height: auto;
+}
+
+main.images {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+main.images img {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+}
+
+footer.impressum-link {
+    text-align: center;
+    padding: 10px;
 }
 
 .white-logo-font {
     font-family: logo;
-    color: white;
 }
 
 .white-normal-font {
     font-family: font-normal;
-    color: white;
 }
 
 .white-bold-font {
     font-family: font-bold;
-    color: white;
 }
 
 /* splash screen */
 
 .splash-container {
     position: fixed;
-    width: 100%;
-    height: 100dvh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #0f0e12;
-    text-align: center;
 }
 
 .splash-disappear {
@@ -98,64 +137,5 @@ a {
 
 .splash-image {
     max-width: 90%;
-    max-height: 100%;
-}
-
-/* main content */
-
-#main-content {
-    display: flex;
-    flex-direction: column;
-    height: 100dvh;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-#content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    text-align: center;
-    overflow: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.main-image {
-    max-width: 100%;
-    max-height: 700px; /* for desktop. looks weird in full screen*/
-    object-fit: scale-down;
-    border-radius: 25px;
-}
-
-#header {
-    height: 60px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#header-logo {
-    object-fit: contain;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    max-width: calc(100% - 20px);
-    max-height: calc(100% - 20px);
-}
-
-#footer {
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#footer a {
-    text-align: center;
-    font-size: 10;
+    height: auto;
 }
