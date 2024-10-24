@@ -1,12 +1,10 @@
-const splash = document.querySelector("#splash-container");
+const express = require('express');
+const app = express();
 
-window.addEventListener("load", (event) => {
-    console.log("content start loading");
+app.get('/', (req, res) => {
+    res.send('Hello World!');
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-    console.log("content loaded");
-    setTimeout(() => {
-        splash.classList.add("splash-disappear");
-    }, 2000);
+app.listen(3000, () => {
+    console.log('Server listening on port 3000');
 });

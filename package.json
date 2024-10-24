@@ -1,0 +1,11 @@
+{
+  "name": "narua_web",
+  "version": "1.0.0",
+  "description": "Website of the brand 'Narua'",
+  "main": "app.js",
+  "author": "Tomeye",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
