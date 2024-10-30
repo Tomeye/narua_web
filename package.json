@@ -6,6 +6,8 @@
   "author": "Tomeye",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.1"
+    "body-parser": "^1.20.3",
+    "express": "^4.21.1",
+    "jsdom": "^25.0.1"
   }
 }
