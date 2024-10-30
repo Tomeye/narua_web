@@ -18,7 +18,6 @@ server.listen(3000, async () => {
 });
 
 /*
-
  curl --location 'http://localhost:3000/analyzeBulletpoints' \
 --header 'Content-Type: application/json' \
 --data '{
