@@ -34,7 +34,7 @@ server.post('/analyzeBulletpoints', async function (req, res) {
 async function analyzeBulletpoints(asinList) {
     let keywordCount = new Map();
     for (const asin of asinList) {
-        const relPath = `../keywordgrap/listings/${asin}`;
+        const relPath = `test/res/listings/${asin}`;
         const testHtml = await readFile(relPath);
         const dom = convertToDom(testHtml);
         let result = parseBulletpoints(dom);
