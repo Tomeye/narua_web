@@ -1,3 +1,4 @@
+const JSONdb = require('simple-json-db');
 const express = require('express');
 const server = express();
 const jsdom = require('jsdom');
@@ -5,7 +6,9 @@ const { JSDOM } = jsdom;
 const fs = require('node:fs/promises');
 const bodyParser = require('body-parser')
 
-const blacklistChars = ['】', '【', '&', '›', '.', '🌱', '-'];
+const bulletPointsDb = new JSONdb('bulletPoints.json');
+
+const blacklistChars = ['】', '【', '&', '›', '.', '🌱', '-', '/', '❗', '✔︎', '🎧', ',', '"', '–'];
 
 server.use(bodyParser.json());
 
@@ -27,47 +30,83 @@ server.post('/analyzeBulletpoints', async function (req, res) {
     const asinList = req.body['asinList'];
     const keywordCount = await analyzeBulletpoints(asinList);
     const obj = Object.fromEntries(keywordCount);
+    // console.log(obj);
     res.status(200);
     res.send(JSON.stringify(obj));
 });
 
 async function analyzeBulletpoints(asinList) {
     let keywordCount = new Map();
+    let needSync = false;
     for (const asin of asinList) {
-        const relPath = `test/res/listings/${asin}`;
-        const testHtml = await readFile(relPath);
-        const dom = convertToDom(testHtml);
-        let result = parseBulletpoints(dom);
-        result = result.textContent;
-        result = getWordStringFromBulletpointsText(result);
-        result = result.split(' ');
+        needSync = true;
+        let result = bulletPointsDb.get(asin);
+        if (result === undefined) {
+            console.log(`bulletpoints of ${asin} not yet in db. parsing ...`);
+            try {
+                // read html
+                const relPath = `test/res/listings/${asin}`;
+                const testHtml = await readFile(relPath);
 
-        result = result.map((word) => {
-            blacklistChars.forEach((blacklistChar) => word = word.replace(blacklistChar, ' '));
-            return word;
-        });
+                // convert html to dom
+                // TODO: this is time consuming
+                const dom = convertToDom(testHtml);
 
-        // remove empty strings
-        result = result.filter(elem => elem != ' ');
+                // parse bullet points
+                result = parseBulletpoints(dom);
 
-        // split element again if there is a white space
-        result = result.map(elem => elem.split(' '));
+                // get text from dom
+                result = result.textContent;
 
-        // flatten
-        result = result.flat();
+                // remove blacklist chars
+                for (const blacklistChar of blacklistChars) {
+                    result = result.replaceAll(blacklistChar, ' ');
+                }
+                result = getWordStringFromBulletpointsText(result);
 
-        // remove empty elements
-        result = result.filter(elem => elem);
+                // split space separated string into words
+                result = result.split(' ');
+
+                // remove empty strings
+                result = result.filter(elem => elem != ' ');
+
+                // remove numbers
+                result = result.filter(elem => !isNumeric(elem));
+
+                // split element again if there is a white space
+                result = result.map(elem => elem.split(' '));
+
+                // flatten
+                result = result.flat();
+
+                // remove empty elements
+                result = result.filter(elem => elem);
+
+                console.log(result);
+
+                bulletPointsDb.set(asin, JSON.stringify(result));
+            } catch (err) {
+                console.log(err);
+            }
+        } else {
+            console.log(`found bullet points for asin ${asin} = ${result}`);
+            result = JSON.parse(result);
+        }
 
         for (const keyword of result) {
-            if (keywordCount.has(keyword)) {
-                let count = keywordCount.get(keyword);
+            const jsonStr = keyword.toString();
+            if (keywordCount.has(jsonStr)) {
+                let count = keywordCount.get(jsonStr);
                 count = count + 1;
-                keywordCount.set(keyword, count);
+                keywordCount.set(jsonStr, count);
             } else {
-                keywordCount.set(keyword, 1);
+                keywordCount.set(jsonStr, 1);
             }
         }
+    }
+
+    if (needSync) {
+        bulletPointsDb.sync();
     }
 
     keywordCount = new Map([...keywordCount.entries()].sort((a, b) => b[1] - a[1]));
@@ -112,4 +151,10 @@ async function readFile(relPath) {
         console.log(err);
     }
     return data;
+}
+
+function isNumeric(str) {
+    if (typeof str != "string") return false // we only process strings!  
+    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+        !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
 }
