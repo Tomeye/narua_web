@@ -7,11 +7,16 @@
     <link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="impressum.css">
-    <script src="listingkeywords.js"></script>
 </head>
 
 <body>
-    <h1>Test</h1>
+    <form id="asin-input-form">
+        <label for="asin">Asin eingeben:</label>
+        <input type="text" id="asin" name="asin" pattern="[A-Z0-9]{10}" title="Asin">
+        <input type="submit" value="Add">
+    </form>
+
+    <script src="listingkeywords.js"></script>
 </body>
 
 </html>

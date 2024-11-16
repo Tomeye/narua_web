@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 
 const bulletPointsDb = new JSONdb('bulletPoints.json');
 
-const blacklistChars = ['】', '【', '&', '›', '.', '🌱', '-', '/', '❗', '✔︎', '🎧', ',', '"', '–'];
+const blacklistChars = ['】', '【', '&', '›', '.', '🌱', '-', '/', '❗', '✔︎', '🎧', ',', '"', '–', '('];
 
 server.use(bodyParser.json());
 
@@ -30,7 +30,6 @@ server.post('/analyzeBulletpoints', async function (req, res) {
     const asinList = req.body['asinList'];
     const keywordCount = await analyzeBulletpoints(asinList);
     const obj = Object.fromEntries(keywordCount);
-    // console.log(obj);
     res.status(200);
     res.send(JSON.stringify(obj));
 });
@@ -82,14 +81,12 @@ async function analyzeBulletpoints(asinList) {
                 // remove empty elements
                 result = result.filter(elem => elem);
 
-                console.log(result);
-
                 bulletPointsDb.set(asin, JSON.stringify(result));
             } catch (err) {
                 console.log(err);
             }
         } else {
-            console.log(`found bullet points for asin ${asin} = ${result}`);
+            console.log(`found bullet points for asin ${asin}`);
             result = JSON.parse(result);
         }
 
